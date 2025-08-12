@@ -1,0 +1,11 @@
+.hideBadgeMobile {
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.hideBadgeDesktop {
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
