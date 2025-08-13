@@ -12,14 +12,14 @@ const BookNav = ({ category }: { category?: string }) => {
         <Text size={"5"}>Books</Text>
         <ScrollArea>
           <TabNav.Root>
-            <TabNav.Link asChild active={pathname === "maths"}>
-              <Link href={"/books/maths"}>Mathematics</Link>
+            <TabNav.Link asChild active={pathname === "mathematics"}>
+              <Link href={"/books/mathematics?page=1"}>Mathematics</Link>
             </TabNav.Link>
             <TabNav.Link asChild active={pathname === "programming"}>
-              <Link href={"/books/programming"}>Programming</Link>
+              <Link href={"/books/programming?page=1"}>Programming</Link>
             </TabNav.Link>
-            <TabNav.Link asChild active={pathname === "selfhelp"}>
-              <Link href={"/books/selfhelp"}>Self Help</Link>
+            <TabNav.Link asChild active={pathname === "self-help"}>
+              <Link href={"/books/self-help?page=1"}>Self Help</Link>
             </TabNav.Link>
           </TabNav.Root>
         </ScrollArea>

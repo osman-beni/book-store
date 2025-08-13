@@ -14,8 +14,22 @@ import Image from "next/image";
 import Link from "next/link";
 import BookNav from "./bookNav";
 
-const BooksPage = async () => {
-  const data = await fetchBooks();
+const BooksPage = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ page: string }>;
+}) => {
+  const { page } = await searchParams;
+
+  let prevPage;
+
+  if (page) {
+    prevPage = Number(page) - 1;
+  }
+
+  const nextPage = Number(page) + 1;
+
+  const data = await fetchBooks(Number(page));
 
   return (
     <Section>
@@ -47,11 +61,11 @@ const BooksPage = async () => {
         })}
       </Grid>
       <Flex mt={"5"} justify={"between"}>
-        <Button asChild disabled>
-          <Link href={`/bookpage`}>Previous</Link>
+        <Button asChild disabled={prevPage === 0 || prevPage === undefined}>
+          <Link href={`/books?page=${prevPage}`}>Previous</Link>
         </Button>
         <Button asChild>
-          <Link href={`/bookpage?page=2`}>Next</Link>
+          <Link href={`/books?page=${nextPage}`}>Next</Link>
         </Button>
       </Flex>
     </Section>

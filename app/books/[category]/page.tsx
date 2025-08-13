@@ -19,17 +19,32 @@ import {
 } from "@/app/lib/data";
 
 const CATEGORY = {
-  maths: fetchMathsBooks,
+  mathematics: fetchMathsBooks,
   programming: fetchProgrammingBooks,
-  selfhelp: fetchSelfHelpBooks,
+  "self-help": fetchSelfHelpBooks,
 };
 
-type IParams = "maths" | "programming" | "selfhelp";
+type IParams = "mathematics" | "programming" | "self-help";
 
-const page = async ({ params }: { params: Promise<{ category: IParams }> }) => {
+const page = async ({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ category: IParams }>;
+  searchParams: Promise<{ page: string }>;
+}) => {
   const { category } = await params;
+  const { page } = await searchParams;
 
-  const data = await CATEGORY[category]();
+  let prevPage;
+
+  if (page) {
+    prevPage = Number(page) - 1;
+  }
+
+  const nextPage = Number(page) + 1;
+
+  const data = await CATEGORY[category](Number(page));
 
   return (
     <Section>
@@ -59,11 +74,11 @@ const page = async ({ params }: { params: Promise<{ category: IParams }> }) => {
         })}
       </Grid>
       <Flex mt={"5"} justify={"between"}>
-        <Button asChild disabled>
-          <Link href={`/books/${category}`}>Previous</Link>
+        <Button asChild disabled={prevPage === 0 || prevPage === undefined}>
+          <Link href={`/books/${category}?page=${prevPage}`}>Previous</Link>
         </Button>
         <Button asChild>
-          <Link href={`/books/${category}/2`}>Next</Link>
+          <Link href={`/books/${category}?page=${nextPage}`}>Next</Link>
         </Button>
       </Flex>
     </Section>

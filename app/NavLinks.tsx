@@ -10,7 +10,7 @@ const NavLinks = () => {
   return (
     <TabNav.Root>
       <TabNav.Link asChild active={pathname.includes("/books")}>
-        <Link href={"/books"}>Book List</Link>
+        <Link href={"/books?page=1"}>Book List</Link>
       </TabNav.Link>
       <TabNav.Link asChild active={pathname.includes("/about")}>
         <Link href={"/about"}>About us</Link>
