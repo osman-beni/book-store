@@ -4,6 +4,7 @@ import "@radix-ui/themes/styles.css";
 import "@/app/ui/globals.css";
 import NavBar from "./NavBar";
 import { inter } from "@/app/ui/fonts";
+import Footer from "./Footer";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,6 +23,7 @@ export default function RootLayout({
           <Container size="4">
             <NavBar />
             {children}
+            <Footer />
           </Container>
         </Theme>
       </body>

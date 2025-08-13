@@ -1,11 +1,14 @@
-import { Box, TextField } from "@radix-ui/themes";
+import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import { TextField } from "@radix-ui/themes";
 import React from "react";
 
 function SearchBar() {
   return (
-    <Box>
-      <TextField.Root size="3" placeholder="Search for book…" />
-    </Box>
+    <TextField.Root placeholder="Search books..." radius={"full"} size={"3"}>
+      <TextField.Slot>
+        <MagnifyingGlassIcon height="16" width="16" />
+      </TextField.Slot>
+    </TextField.Root>
   );
 }
 

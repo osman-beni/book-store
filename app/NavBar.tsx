@@ -1,20 +1,30 @@
 import React from "react";
 import SearchBar from "./SearchBar";
 import { Box, Flex, Text } from "@radix-ui/themes";
+import Link from "next/link";
 import { dmSerifDisplay } from "@/app/ui/fonts";
-import { LuAlignJustify } from "react-icons/lu";
+import NavLinks from "./NavLinks";
+import MobileNavButton from "./MobileNavButton";
 
 function NavBar() {
   return (
-    <Flex justify={"between"}>
-      <Text as="p" className={dmSerifDisplay.className} size="6">
-        BookStore
+    <Flex gap={{ md: "5" }} justify={{ initial: "between" }}>
+      <Text asChild className={dmSerifDisplay.className} size="6">
+        <Link
+          style={{ textDecoration: "none", color: "currentColor" }}
+          href={"/"}
+        >
+          BookStore
+        </Link>
       </Text>
-      <Box mb={"6"} display={{ initial: "none", md: "block" }}>
+      <Box flexGrow={"1"} display={{ initial: "none", md: "block" }}>
         <SearchBar />
       </Box>
-      <Box>
-        <LuAlignJustify size={36} strokeWidth={1.5} />
+      <Box display={{ md: "none" }}>
+        <MobileNavButton />
+      </Box>
+      <Box display={{ initial: "none", md: "block" }}>
+        <NavLinks />
       </Box>
     </Flex>
   );
