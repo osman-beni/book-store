@@ -39,7 +39,7 @@ const BooksPage = async ({
           const image = `https://covers.openlibrary.org/b/id/${work.cover_i}-M.jpg`;
 
           return (
-            <Box key={work.key} maxWidth={{ initial: "285px" }}>
+            <Box key={work.key + Math.random()} maxWidth={{ initial: "285px" }}>
               <Card>
                 <Flex direction={{ initial: "column" }} gap={"6"}>
                   <Inset>
@@ -50,10 +50,14 @@ const BooksPage = async ({
                       <Image src={image} alt={work.title} fill={true} />
                     </Box>
                   </Inset>
-
-                  <Text size={"2"} weight={"medium"} wrap={"pretty"}>
-                    {work.title}
-                  </Text>
+                  <Link
+                    href={`/book?book=${work.key.replace("/works/", "")}`}
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    <Text size={"2"} weight={"medium"} wrap={"pretty"}>
+                      {work.title}
+                    </Text>
+                  </Link>
                 </Flex>
               </Card>
             </Box>

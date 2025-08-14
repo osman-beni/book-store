@@ -64,10 +64,14 @@ const page = async ({
                     <Image src={image} alt={work.title} fill />
                   </Box>
                 </Inset>
-
-                <Text size={"2"} weight={"medium"} wrap={"pretty"}>
-                  {work.title.slice(0, 30)}
-                </Text>
+                <Link
+                  href={`/book?book=${work.key.replace("/works/", "")}`}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <Text size={"2"} weight={"medium"} wrap={"pretty"}>
+                    {work.title.slice(0, 30)}
+                  </Text>
+                </Link>
               </Flex>
             </Card>
           );

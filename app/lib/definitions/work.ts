@@ -1,11 +1,17 @@
 export interface Work {
-    description: string;
-    title: string;
-    covers: number[];
-    subjects: string[];
     key: string;
+    title: string;
+    first_publish_date: string;
     authors: Author[];
     type: Type;
+    description: string;
+    covers: number[];
+    lc_classifications: string[];
+    dewey_number: string[];
+    subjects: string[];
+    first_sentence: Created;
+    subject_times: string[];
+    identifiers: Identifiers;
     latest_revision: number;
     revision: number;
     created: Created;
@@ -23,5 +29,9 @@ export interface Type {
 
 export interface Created {
     type: string;
-    value: Date;
+    value: string;
+}
+
+export interface Identifiers {
+    wikidata: string[];
 }
