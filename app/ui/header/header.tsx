@@ -20,7 +20,7 @@ const Header = () => {
         </Heading>
         <Text>Heaven for book lovers</Text>
         <Button asChild>
-          <Link href="/books">See all books</Link>
+          <Link href="/books?page=1">See all books</Link>
         </Button>
       </Flex>
       <Box display={{ initial: "none", md: "block" }}>
