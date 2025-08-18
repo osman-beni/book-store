@@ -21,7 +21,9 @@ function SearchBar() {
         return;
       }
 
-      router.push(`/search?q=${searchTerm.split(" ").join("+")}&page=1`);
+      const newSearchTerm = searchTerm;
+      setSearchTerm("");
+      router.push(`/search?q=${newSearchTerm.split(" ").join("+")}&page=1`);
     }
   };
 
@@ -30,6 +32,7 @@ function SearchBar() {
       placeholder="Search books..."
       radius={"full"}
       size={"3"}
+      value={searchTerm}
       onChange={(e) => setSearchTerm(e.target.value)}
       onKeyDown={handleKeyDown}
     >

@@ -8,23 +8,28 @@ import MobileNavButton from "./MobileNavButton";
 
 function NavBar() {
   return (
-    <Flex gap={{ md: "5" }} justify={{ initial: "between" }}>
-      <Text asChild className={dmSerifDisplay.className} size="6">
-        <Link
-          style={{ textDecoration: "none", color: "currentColor" }}
-          href={"/"}
-        >
-          BookStore
-        </Link>
-      </Text>
-      <Box flexGrow={"1"} display={{ initial: "none", md: "block" }}>
+    <Flex direction={"column"}>
+      <Flex gap={{ md: "5" }} justify={{ initial: "between" }}>
+        <Text asChild className={dmSerifDisplay.className} size="6">
+          <Link
+            style={{ textDecoration: "none", color: "currentColor" }}
+            href={"/"}
+          >
+            BookStore
+          </Link>
+        </Text>
+        <Box flexGrow={"1"} display={{ initial: "none", md: "block" }}>
+          <SearchBar />
+        </Box>
+        <Box display={{ md: "none" }}>
+          <MobileNavButton />
+        </Box>
+        <Box display={{ initial: "none", md: "block" }}>
+          <NavLinks />
+        </Box>
+      </Flex>
+      <Box display={{ md: "none" }} mt={"3"}>
         <SearchBar />
-      </Box>
-      <Box display={{ md: "none" }}>
-        <MobileNavButton />
-      </Box>
-      <Box display={{ initial: "none", md: "block" }}>
-        <NavLinks />
       </Box>
     </Flex>
   );
