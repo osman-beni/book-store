@@ -4,7 +4,7 @@ import { libreBaskerville } from "../ui/fonts";
 
 const AboutPage = () => {
   return (
-    <Section>
+    <Section maxWidth={"800px"} mx={"auto"}>
       <Box mb={"5"}>
         <Heading as="h2" mb={"3"} className={libreBaskerville.className}>
           Our Story
@@ -24,9 +24,16 @@ const AboutPage = () => {
         </Heading>
         <Text>
           This project was brought to life by a dedicated group of final year
-          students. Our group leaders, David Brown Tandoh Chapman and Gifty Adzo
-          Doe, guided our vision, while Osman Yakub Beni and the rest of the
-          team worked together to make this site a reality.
+          students. Our group leaders,{" "}
+          <Text as="span" weight={"bold"}>
+            David Brown Tandoh Chapman
+          </Text>{" "}
+          and{" "}
+          <Text as="span" weight={"bold"}>
+            Gifty Adzo Doe
+          </Text>
+          , guided our vision, while Osman Yakub Beni and the rest of the team
+          worked together to make this site a reality.
         </Text>
       </Box>
       <Box mb={"5"}>
