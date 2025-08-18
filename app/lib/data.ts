@@ -1,4 +1,5 @@
 import { CategoryBooks } from "./definitions";
+import { SearchBooks } from "./definitions/search-books";
 import { TrendingBooks } from "./definitions/trending-books";
 import { Work } from "./definitions/work";
 import { Work2 } from "./definitions/work2";
@@ -48,4 +49,10 @@ export const fetchSelfHelpBooks = async (page: number) => {
     const data: CategoryBooks = await res.json();
     return data;
 
+}
+
+export const searchBooks = async (query: string, page = 1) => {
+    const res = await fetch(`https://openlibrary.org/search.json?q=${query}&limit=12&page=${page}`);
+    const data: SearchBooks = await res.json();
+    return data;
 }

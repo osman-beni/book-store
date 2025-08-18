@@ -79,7 +79,11 @@ const page = async ({
       </Grid>
       <Flex mt={"5"} justify={"between"}>
         <Button asChild disabled={prevPage === 0 || prevPage === undefined}>
-          <Link href={`/books/${category}?page=${prevPage}`}>Previous</Link>
+          {prevPage === 0 || prevPage === undefined ? (
+            <Text>Previous</Text>
+          ) : (
+            <Link href={`/books/${category}?page=${prevPage}`}>Previous</Link>
+          )}
         </Button>
         <Button asChild>
           <Link href={`/books/${category}?page=${nextPage}`}>Next</Link>

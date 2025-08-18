@@ -28,9 +28,10 @@ const BookPage = async ({
   return (
     <Section>
       <Flex gap={"3"} maxWidth={"500px"} wrap={"wrap"}>
-        {data.subjects.slice(0, 3).map((subject) => (
-          <Badge key={subject}>{subject}</Badge>
-        ))}
+        {data.subjects &&
+          data.subjects
+            .slice(0, 3)
+            .map((subject) => <Badge key={subject}>{subject}</Badge>)}
       </Flex>
       <Flex
         justify={"between"}

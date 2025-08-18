@@ -1,5 +1,5 @@
 import React from "react";
-import { fetchBooks } from "../lib/data";
+import { searchBooks } from "../lib/data";
 import {
   Card,
   Flex,
@@ -12,14 +12,14 @@ import {
 } from "@radix-ui/themes";
 import Image from "next/image";
 import Link from "next/link";
-import BookNav from "./bookNav";
+import BookNav from "@/app/books/bookNav";
 
-const BooksPage = async ({
+const SearchBooksPage = async ({
   searchParams,
 }: {
-  searchParams: Promise<{ page: string }>;
+  searchParams: Promise<{ page: string; q: string }>;
 }) => {
-  const { page } = await searchParams;
+  const { page, q } = await searchParams;
 
   let prevPage;
 
@@ -29,14 +29,16 @@ const BooksPage = async ({
 
   const nextPage = Number(page) + 1;
 
-  const data = await fetchBooks(Number(page));
+  const data = await searchBooks(q, Number(page));
 
   return (
     <Section>
       <BookNav />
       <Grid columns={{ initial: "2", sm: "3", md: "4" }} gap={"3"}>
-        {data.works.map((work) => {
-          const image = `https://covers.openlibrary.org/b/id/${work.cover_i}-M.jpg`;
+        {data.docs.map((work) => {
+          const image = work.cover_i
+            ? `https://covers.openlibrary.org/b/id/${work.cover_i}-M.jpg`
+            : "/not-found-image.jpg";
 
           return (
             <Box key={work.key + Math.random()} maxWidth={{ initial: "285px" }}>
@@ -69,15 +71,20 @@ const BooksPage = async ({
           {prevPage === 0 || prevPage === undefined ? (
             <Text>Previous</Text>
           ) : (
-            <Link href={`/books?page=${prevPage}`}>Previous</Link>
+            <Link href={`/search?q=${q}&page=${prevPage}`}>Previous</Link>
           )}
         </Button>
-        <Button asChild>
-          <Link href={`/books?page=${nextPage}`}>Next</Link>
+
+        <Button asChild disabled={data.numFound <= 12}>
+          {data.numFound <= 12 ? (
+            <Text>Next</Text>
+          ) : (
+            <Link href={`/search?q=${q}&page=${nextPage}`}>Next</Link>
+          )}
         </Button>
       </Flex>
     </Section>
   );
 };
 
-export default BooksPage;
+export default SearchBooksPage;
